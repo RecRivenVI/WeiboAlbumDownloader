@@ -1,0 +1,25 @@
+# Build results
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache/options
+.vs/
+.vscode/
+
+# Test data (不要提交测试数据)
+test_data/
+*.log
+
+# Cookie 和配置文件（包含敏感信息）
+cookie.txt
+settings.json
+Settings.json

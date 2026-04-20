@@ -1,4 +1,4 @@
-﻿using HtmlAgilityPack;
+using HtmlAgilityPack;
 using MicaWPF.Controls;
 using Newtonsoft.Json;
 using Sentry;
@@ -145,6 +145,19 @@ namespace WeiboAlbumDownloader
 
                 //读取用户列表和设置
                 InitSettingsData();
+
+                // 设置全局验证码处理器（仅在 m.weibo.cn 模式下启用）
+                if (dataSource == WeiboDataSource.WeiboCnMobile)
+                {
+                    HttpHelper.GlobalCaptchaHandler = async (captchaUrl) =>
+                    {
+                        return await SeleniumHelper.ShowCaptchaWindow(captchaUrl, AppendLog);
+                    };
+                }
+                else
+                {
+                    HttpHelper.GlobalCaptchaHandler = null;
+                }
 
                 if (startPage <= 1) startPage = 1;
                 if (startSinceId <= 0) startSinceId = 0;
